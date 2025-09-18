@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
+import { Catalog } from "../../features/catalog/Catalog";
+import {Product} from "../models/product";
 
 
 function App() {
-  const [products, setProducts] = useState<{name: string, price:number}[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
    fetch('https://localhost:5001/api/products')
@@ -11,21 +13,25 @@ function App() {
   }, []);
 
   const addProduct = () => {
-    setProducts(prevState => [...prevState, { name: `Product ${prevState.length + 1}`, price: Math.random() * 100 }]);
-  };
+    setProducts(prevState = > [...prevState,
+      {
+        id: prevState.length + 1,
+        name: 'product ' + (prevState.length + 1),
+        price: (prevState.length * 100) + 100,
+        description: 'This is a new product',
+        pictureUrl: 'https://picsum.photos/200',
+        brand: 'test',
+        type: 'test',
+        quantityInStock: 100
+      }])
+    }
+ 
 
   
   return (
     <div>
       <h1>ReStore</h1>
-      <ul>
-        {products.map((item, index) => (
-          <li key={index}>
-            {item.name} - ${item.price.toFixed(2)}
-          </li>
-        ))}
-      </ul>
-      <button onClick={addProduct}>Add Product</button>
+     <Catalog products={products} addProduct={addProduct} />
     </div>
   );
 }
