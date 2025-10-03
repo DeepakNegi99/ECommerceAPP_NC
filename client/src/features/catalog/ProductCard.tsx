@@ -17,11 +17,13 @@ export default function ProductCard({ product }: props) {
     <Card
       elevation={3}
       sx={{
-        height: 280,
+       height: "200",
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        width: 220,
+
       }}
     >
       <CardMedia
