@@ -49,7 +49,8 @@ const ProductDetails = () => {
           <Grid size={6}>
             <TextField
 
-            
+
+
              />
           </Grid>
         </Grid>
